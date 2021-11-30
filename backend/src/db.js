@@ -1,5 +1,25 @@
 const ItemModel = require("./models/item");
 
+function getAll(cat, callback) {
+    ItemModel.find({}, (error, result) => {
+        if(error) {
+            console.log(error);
+            callback([]);
+        }
+        else {
+            callback(result);
+        }
+    })
+}
+
+function incpicked(id) {
+    ItemModel.updateOne({_id: id}, {
+        $inc: {
+            picked: 1
+        }
+    }, (error, result) => { });
+}
+
 function getRandom(cat, callback) {
     ItemModel.find({category: cat}, (error, result) => {
         if(error) {
@@ -7,21 +27,33 @@ function getRandom(cat, callback) {
             callback([]);
         }
         else {
-            callback(result[Math.floor(Math.random()*result.length)]);
+            callback([result[Math.floor(Math.random() * result.length)]]);
         }
     })
 }
+
 function add(cat, name, callback) {
     const newItem = new ItemModel({
         category: cat,
         name: name
     });
-    newItem.save((error, result) => {
-        callback(result);
+    newItem.save(() => {
+        callback();
     })
-  }
-function report(cat, name, callback) {
-    ItemModel.update({category: cat, name: name}, {
+}
+function getId(id, callback) {
+    ItemModel.find({_id: id}, (error, result) => {
+        if(error) {
+            console.log(error);
+            callback([]);
+        }
+        else {
+            callback(result);
+        }
+    })
+}
+function report(id, callback) {
+    ItemModel.updateOne({_id: id}, {
         $inc: {
             report: 1
         }
@@ -36,8 +68,11 @@ function remove(id, callback) {
 }
 
 module.exports = {
+    getAll,
+    incpicked,
     getRandom,
     add,
+    getId,
     report,
     remove
 };

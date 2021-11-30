@@ -1,11 +1,12 @@
 const express = require('express')
 const app = express()
 const port = 8080
+const itemRouter = require("./routes/item");
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 const mongoose = require("mongoose")
-mongoose.connect("mongodb://localhost:27017/todo", {
+mongoose.connect("mongodb://localhost:27017/lr_test1", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -14,7 +15,7 @@ db.once('open', function() {
     console.log("DB connected!");
 })
 
-app.get('/api/:title/random', (req, res) => {
+/*app.get('/api/:title/random', (req, res) => {
     const 
 })
 app.get('/api/:title/add', (req, res) => {
@@ -22,8 +23,16 @@ app.get('/api/:title/add', (req, res) => {
 })
 app.get('/api/:title/report', (req, res) => {
     const 
-})
+})*/
 
+app.use("/", itemRouter);
+
+app.listen(port, "0.0.0.0", () => {
+    console.log(`Listening on port ${port}`);
+});
+
+
+/*
 
 app.get('/api/breeds/image/random', (req, res) => {
     let retval = {"message": randdogs[Math.floor(Math.random() * randdogs.length)],
@@ -62,3 +71,4 @@ app.use((req, res, next) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+*/

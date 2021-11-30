@@ -2,12 +2,16 @@ const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
   category: {
-    type: ObjectId,
+    type: String,
     required: true,
   },
   name: {
     type: String,
     required: true,
+  },
+  picked: {
+    type: Number,
+    default: 0
   },
   report: {
       type: Number,
