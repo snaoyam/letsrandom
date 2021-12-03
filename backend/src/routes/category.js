@@ -1,20 +1,17 @@
 const express = require("express");
-const db = require("./db_item");
+const db = require("./db_category");
 const router  = express.Router();
 
-router.get("/:category", (req, res) => {
-  const {category} = req.params;
-  db.getRandom(category, (items) => {
+router.get("/", (req, res) => {
+  db.getAll((items) => {
     res.json(items);
-    db.incpicked(items[0].id);
   });
 });
 
-router.post("/:category", (req, res) => {
-  const {category} = req.params;
-  const {newitem} = req.body;
-  if(category && newitem) {
-    db.add(category, newitem, () => {
+router.post("/", (req, res) => {
+  const {newcat} = req.body;
+  if(newcat) {
+    db.add(newcat, () => {
       res.status(200).json({"msg": "success!"});
     });
   }
@@ -23,10 +20,9 @@ router.post("/:category", (req, res) => {
   }
 });
 
-router.delete("/:category", (req, res) => {
-  const {category} = req.params;
+router.delete("/", (req, res) => {
   const {id} = req.query;
-  if(category && id) {
+  if(id) {
     db.getId(id, (result) => {
       if(result[0].report >= 2 && result[0].report >= 0.33*result[0].picked) {
         db.remove(id, () => {

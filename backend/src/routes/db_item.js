@@ -1,4 +1,4 @@
-const ItemModel = require("./models/item");
+const ItemModel = require("../dbmodels/item");
 
 function getAll(cat, callback) {
     ItemModel.find({}, (error, result) => {
