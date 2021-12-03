@@ -12,6 +12,18 @@ function getAll(callback) {
     })
 }
 
+function find(cat, callback) {
+    CateModel.find({category: cat}, (error, result) => {
+        if(error) {
+            console.log(error);
+            callback([]);
+        }
+        else {
+            callback(result);
+        }
+    })
+}
+
 function incpicked(id) {
     CateModel.updateOne({_id: id}, {
         $inc: {
@@ -60,6 +72,7 @@ function remove(id, callback) {
 module.exports = {
     getAll,
     incpicked,
+    find,
     add,
     getId,
     report,

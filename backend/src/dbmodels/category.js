@@ -5,6 +5,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  noitems: {
+    type: Number,
+    default: 0
+  },
   picked: {
     type: Number,
     default: 0

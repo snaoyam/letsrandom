@@ -1,12 +1,23 @@
 const express = require("express");
 const db = require("./db_item");
+const db_cat = require("./db_category");
 const router  = express.Router();
 
 router.get("/:category", (req, res) => {
   const {category} = req.params;
   db.getRandom(category, (items) => {
-    res.json(items);
-    db.incpicked(items[0].id);
+    if(items[0]) {
+      res.json(items);
+      db.incpicked(items[0].id);
+    }
+    else {
+      db_cat.find(category, (items) => {
+        if(items[0])
+          res.status(200).json({"msg": "Nothing Found!"})
+        else
+          res.status(404).json({"msg": "404 not found"})
+      })
+    }
   });
 });
 
