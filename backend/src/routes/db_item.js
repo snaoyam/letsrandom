@@ -1,6 +1,6 @@
 const ItemModel = require("../dbmodels/item");
 
-function getAll(cat, callback) {
+function getAll(categoryid, callback) {
     ItemModel.find({}, (error, result) => {
         if(error) {
             console.log(error);
@@ -20,8 +20,8 @@ function incpicked(id) {
     }, (error, result) => { });
 }
 
-function getRandom(cat, callback) {
-    ItemModel.find({category: cat}, (error, result) => {
+function getRandom(categoryid, callback) {
+    ItemModel.find({category: categoryid}, (error, result) => {
         if(error) {
             console.log(error);
             callback([]);
@@ -32,9 +32,9 @@ function getRandom(cat, callback) {
     })
 }
 
-function add(cat, name, callback) {
+function add(categoryid, name, callback) {
     const newItem = new ItemModel({
-        category: cat,
+        category: categoryid,
         name: name
     });
     newItem.save(() => {
