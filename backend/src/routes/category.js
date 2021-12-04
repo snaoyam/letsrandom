@@ -8,6 +8,11 @@ router.get("/", (req, res) => {
   });
 });
 
+router.put("/", (req, res) => {
+  const {id} = req.body;
+  db.incpicked(id);
+})
+
 router.post("/", (req, res) => {
   const {newcat} = req.body;
   if(newcat) {
