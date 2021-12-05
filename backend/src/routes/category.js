@@ -10,11 +10,13 @@ router.get("/", (req, res) => {
 
 router.put("/", (req, res) => {
   const {id} = req.body;
-  db.incpicked(id);
+  db.incpicked(id, () => {
+    res.status(200).json({"msg": "success!"});
+  });
 })
 
 router.post("/", (req, res) => {
-  const {newcat} = req.body;
+  const {newcat} = req.query;
   if(newcat) {
     db.add(newcat, () => {
       res.status(200).json({"msg": "success!"});

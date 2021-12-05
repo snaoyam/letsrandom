@@ -24,12 +24,12 @@ function find(cat, callback) {
     })
 }
 
-function incpicked(id) {
-    CateModel.updateOne({_id: id}, {
+function incpicked(cat, callback) {
+    CateModel.updateOne({_id: cat}, {
         $inc: {
             picked: 1
         }
-    }, (error, result) => { });
+    }, (error, result) => { callback(); });
 }
 
 /* Optional, pick random n categories */

@@ -11,7 +11,6 @@ router.get("/:categoryid", (req, res) => {
       db.incpicked(items[0].id);
     }
     else {
-      console.log(categoryid);
       db_cat.find(categoryid, (items) => {
         console.log(items);
         if(items[0])
@@ -25,7 +24,7 @@ router.get("/:categoryid", (req, res) => {
 
 router.post("/:categoryid", (req, res) => {
   const {categoryid} = req.params;
-  const {newitem} = req.body;
+  const {newitem} = req.query;
   if(categoryid && newitem) {
     db.add(categoryid, newitem, () => {
       res.status(200).json({"msg": "success!"});
