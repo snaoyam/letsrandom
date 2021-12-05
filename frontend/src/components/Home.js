@@ -4,18 +4,8 @@ import axios from "axios";
 import "./Home.css";
 import CatElement from "./CatElement";
 
-const Home = ({catlist, setCate}) => {
+const Home = ({setCate, catlistshow, reported, setReport}) => {
   const [inputs, setInputs] = useState('');
-  const [catlistshow, setCateshow] = useState(catlist);
-  const [reported, setReport] = useState([]);
-
-  useEffect(() => {
-    const temprep = [];
-    reported.forEach(v => { temprep.push(v._id) });
-    const tempshow = catlist.filter(v => !temprep.includes(v._id));
-    setCateshow(tempshow);
-
-  }, [catlist]);
 
   const onChange = (e) => {
     const {value} = e.target;

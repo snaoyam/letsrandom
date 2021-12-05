@@ -9,6 +9,17 @@ import Home from "./components/Home";
 
 function App() {
   const [catlist, setCate] = useState([]);
+  const [reported, setReport] = useState([]);
+  const [catlistshow, setCateshow] = useState(catlist);
+  
+  useEffect(() => {
+    const temprep = [];
+    reported.forEach(v => { temprep.push(v._id) });
+    const tempshow = catlist.filter(v => !temprep.includes(v._id));
+    setCateshow(tempshow);
+
+  }, [catlist]);
+
   useEffect(() => {
     axios.get(`/api`)
     .then(response => {
@@ -16,7 +27,7 @@ function App() {
     });
   }, []);
 
-  const catPage = catlist.map((v, index) => <Route exact path={"/"+v._id} key={v._id} element={<CatPage path={v._id} name={v.category}/>}/>);
+  const catPage = catlistshow.map((v, index) => <Route exact path={"/"+v._id} key={v._id} element={<CatPage path={v._id} name={v.category}/>}/>);
   const Notfound = <span> 404 Not found </span>
 
   return (
@@ -24,7 +35,7 @@ function App() {
       <Topbar /> 
       <Recommended />
       <Routes>
-        <Route exact path="/" element={<Home catlist={catlist} setCate={setCate}/>}/>
+        <Route exact path="/" element={<Home setCate={setCate} reported={reported} setReport={setReport} catlistshow={catlistshow}/>}/>
         {catPage}
         <Route path="*" element={Notfound}/>
       </Routes>
