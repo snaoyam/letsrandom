@@ -11,7 +11,9 @@ router.get("/:categoryid", (req, res) => {
       db.incpicked(items[0].id);
     }
     else {
+      console.log(categoryid);
       db_cat.find(categoryid, (items) => {
+        console.log(items);
         if(items[0])
           res.status(200).json({"msg": "Nothing Found!"})
         else

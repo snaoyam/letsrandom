@@ -13,7 +13,7 @@ function getAll(callback) {
 }
 
 function find(cat, callback) {
-    CateModel.find({category: cat}, (error, result) => {
+    CateModel.find({_id: cat}, (error, result) => {
         if(error) {
             console.log(error);
             callback([]);
