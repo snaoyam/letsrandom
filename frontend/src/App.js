@@ -9,7 +9,7 @@ import Recommended from "./components/Recommended";
 
 function App() {
   const [catlist, setCate] = useState([]);
-
+  const [inputs, setInputs] = useState('');
   useEffect(() => {
     axios.get(`/api`)
     .then(response => {
@@ -17,21 +17,48 @@ function App() {
     });
   }, []);
 
-  const clickcategory = (item) => {
-    axios.put(`/api`, {
-      id: item._id
-    })
+
+  const onChange = (e) => {
+    const {value} = e.target;
+    setInputs(value);
   };
 
-  const catElements = catlist.map((v) => 
-  <Link to={v._id}>
-    <CatElement name={v.category} onCatclick={() => clickcategory(v)}/>
-  </Link>
+  const additem = () => {
+    if(inputs) {
+      axios.post(`/api/`,{
+        newcat: inputs
+      })
+      .then(() => axios.get(`/api/`))
+      .then(response => {
+        setCate(response.data);
+        setInputs('');
+      });
+    }
+  };
+
+  const deleteitem = (v) => {
+    console.log(v);
+  }
+
+  const catElements = catlist.map((v, index) => <>
+    <Link to={v._id} key={index}>
+      <CatElement name={v.category}/>
+    </Link>
+  </>
+  );
+  
+  const catElementsadd =
+    <div key="add">
+      <label>Add new items </label>
+      <input type="text" id="newitem" required onChange={onChange} value={inputs}></input><button type="button" className="btn" onClick={additem}>추가하기</button>
+    </div>;
+  catElements.push(catElementsadd);
+
+  const catPage = catlist.map((v, index) => 
+  <Route exact path={"/"+v._id} key={v._id} element={<CatPage path={v._id} name={v.category}/>}/>
   );
 
-  const catPage = catlist.map((v) => 
-  <Route exact path={"/"+v._id} key={v._id} element={<CatPage path={v._id} name={v.category} GetRand={() => randitem(v)}/>}/>
-  );
+  const Notfound = <> 404 Not found </>
 
   return (
     <BrowserRouter>
@@ -40,6 +67,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={catElements}/>
         {catPage}
+        <Route path="*" element={Notfound}/>
       </Routes>
     </BrowserRouter>
   )

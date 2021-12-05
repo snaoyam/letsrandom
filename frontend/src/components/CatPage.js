@@ -7,6 +7,12 @@ const CatPage = (props) => {
   const [item, setItems] = useState([{name: ""}]);
   const [inputs, setInputs] = useState('');
 
+  useEffect(()=>{
+    axios.put(`/api`, {
+      id: props.path
+    })
+}, [])
+
   const onChange = (e) => {
     const {value} = e.target;
     setInputs(value);
@@ -14,12 +20,11 @@ const CatPage = (props) => {
 
   const additem = () => {
     if(inputs) {
-      axios.post(`/api/`+props.path, null, { params: {
+      axios.post(`/api/`+props.path, {
         newitem: inputs
-      }})
+      })
       .then(response => {
         setInputs('');
-        console.log(response);
       });
     }
   };
@@ -27,15 +32,21 @@ const CatPage = (props) => {
   const getranditem = () => {
     axios.get(`/api/`+props.path)
     .then(response => {
-      setItems(response.data);
+      if(response.data.name) {
+        setItems(response.data);
+      }
+      else {
+        alert("Please Add any items");
+      }
     });
   };
 
   return (
     <>
+      {props.name}<br></br>
       <button type="button" className="btn" onClick={getranditem}>Get Random!</button><br></br>
-      <div>Random value: {item[0].name}</div>
-      <label>Add new items</label><br></br>
+      <div>Random value: {item.name}</div>
+      <label>Add new items </label>
       <input type="text" id="newitem" required onChange={onChange} value={inputs}></input><button type="button" className="btn" onClick={additem}>추가하기</button>
     </>
   );
