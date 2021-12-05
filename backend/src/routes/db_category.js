@@ -39,8 +39,8 @@ function add(cat, callback) {
     const newItem = new CateModel({
         category: cat
     });
-    newItem.save(() => {
-        callback();
+    newItem.save((error, result) => {
+        callback(result);
     })
 }
 function getId(id, callback) {

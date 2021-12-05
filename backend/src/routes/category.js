@@ -16,10 +16,10 @@ router.put("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
-  const {newcat} = req.query;
+  const {newcat} = req.body;
   if(newcat) {
-    db.add(newcat, () => {
-      res.status(200).json({"msg": "success!"});
+    db.add(newcat, (items) => {
+      res.status(200).json(items);
     });
   }
   else {

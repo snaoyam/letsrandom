@@ -23,7 +23,7 @@ router.get("/:categoryid", (req, res) => {
 
 router.post("/:categoryid", (req, res) => {
   const {categoryid} = req.params;
-  const {newitem} = req.query;
+  const {newitem} = req.body;
   if(categoryid && newitem) {
     db.add(categoryid, newitem, () => {
       res.status(200).json({"msg": "success!"});
