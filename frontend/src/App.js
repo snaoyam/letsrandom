@@ -3,13 +3,12 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Topbar from "./components/Topbar";
-import CatElement from "./components/CatElement";
 import CatPage from "./components/CatPage";
 import Recommended from "./components/Recommended";
+import Home from "./components/Home";
 
 function App() {
   const [catlist, setCate] = useState([]);
-  const [inputs, setInputs] = useState('');
   useEffect(() => {
     axios.get(`/api`)
     .then(response => {
@@ -17,55 +16,15 @@ function App() {
     });
   }, []);
 
-
-  const onChange = (e) => {
-    const {value} = e.target;
-    setInputs(value);
-  };
-
-  const additem = () => {
-    if(inputs) {
-      axios.post(`/api/`,{
-        newcat: inputs
-      })
-      .then(() => axios.get(`/api/`))
-      .then(response => {
-        setCate(response.data);
-        setInputs('');
-      });
-    }
-  };
-
-  const deleteitem = (v) => {
-    console.log(v);
-  }
-
-  const catElements = catlist.map((v, index) => <>
-    <Link to={v._id} key={index}>
-      <CatElement name={v.category}/>
-    </Link>
-  </>
-  );
-  
-  const catElementsadd =
-    <div key="add">
-      <label>Add new items </label>
-      <input type="text" id="newitem" required onChange={onChange} value={inputs}></input><button type="button" className="btn" onClick={additem}>추가하기</button>
-    </div>;
-  catElements.push(catElementsadd);
-
-  const catPage = catlist.map((v, index) => 
-  <Route exact path={"/"+v._id} key={v._id} element={<CatPage path={v._id} name={v.category}/>}/>
-  );
-
-  const Notfound = <> 404 Not found </>
+  const catPage = catlist.map((v, index) => <Route exact path={"/"+v._id} key={v._id} element={<CatPage path={v._id} name={v.category}/>}/>);
+  const Notfound = <span> 404 Not found </span>
 
   return (
     <BrowserRouter>
       <Topbar /> 
       <Recommended />
       <Routes>
-        <Route exact path="/" element={catElements}/>
+        <Route exact path="/" element={<Home catlist={catlist} setCate={setCate}/>}/>
         {catPage}
         <Route path="*" element={Notfound}/>
       </Routes>
