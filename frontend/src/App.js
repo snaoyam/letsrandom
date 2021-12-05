@@ -5,14 +5,16 @@ import axios from "axios";
 import Topbar from "./components/Topbar";
 import CatElement from "./components/CatElement";
 import CatPage from "./components/CatPage";
+import Recommended from "./components/Recommended";
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [catlist, setCate] = useState([]);
+  const [item, setItems] = useState([]);
 
   useEffect(() => {
     axios.get(`/api`)
     .then(response => {
-      setItems(response.data);
+      setCate(response.data);
     });
   }, []);
 
@@ -22,20 +24,29 @@ function App() {
     })
   };
 
-  const catElements = items.map((v) => 
+  const getrandom = (item) => {
+    console.log(item);
+    axios.get(`/api/`+item._id)
+    .then(response => {
+      setItems(response.data);
+    });
+  };
+
+  const catElements = catlist.map((v) => 
   <Link to={v._id}>
     <CatElement name={v.category} onCatclick={() => clickcategory(v)}/>
   </Link>
   );
 
-  const catPage = items.map((v) => 
-  <Route exact path={"/"+v._id} element={<CatElement name={v.category}/>} key={v._id}/>
+  const catPage = catlist.map((v) => 
+  <Route exact path={"/"+v._id} element={<CatPage name={v.category} GetRand={() => getrandom(v)}/>} key={v._id}/>
   );
 
 console.log(catElements);
   return (
     <BrowserRouter>
       <Topbar /> 
+      <Recommended />
       <Routes>
         <Route exact path="/" element={catElements}/>
         {catPage}
