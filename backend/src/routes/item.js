@@ -7,12 +7,11 @@ router.get("/:categoryid", (req, res) => {
   const {categoryid} = req.params;
   db.getRandom(categoryid, (items) => {
     if(items[0]) {
-      res.json(items);
+      res.json(items[0]);
       db.incpicked(items[0].id);
     }
     else {
       db_cat.find(categoryid, (items) => {
-        console.log(items);
         if(items[0])
           res.status(200).json({"msg": "Nothing Found!"})
         else
