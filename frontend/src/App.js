@@ -9,7 +9,6 @@ import Recommended from "./components/Recommended";
 
 function App() {
   const [catlist, setCate] = useState([]);
-  const [item, setItems] = useState([]);
 
   useEffect(() => {
     axios.get(`/api`)
@@ -24,14 +23,6 @@ function App() {
     })
   };
 
-  const getrandom = (item) => {
-    console.log(item);
-    axios.get(`/api/`+item._id)
-    .then(response => {
-      setItems(response.data);
-    });
-  };
-
   const catElements = catlist.map((v) => 
   <Link to={v._id}>
     <CatElement name={v.category} onCatclick={() => clickcategory(v)}/>
@@ -39,10 +30,9 @@ function App() {
   );
 
   const catPage = catlist.map((v) => 
-  <Route exact path={"/"+v._id} element={<CatPage name={v.category} GetRand={() => getrandom(v)}/>} key={v._id}/>
+  <Route exact path={"/"+v._id} key={v._id} element={<CatPage path={v._id} name={v.category} GetRand={() => randitem(v)}/>}/>
   );
 
-console.log(catElements);
   return (
     <BrowserRouter>
       <Topbar /> 
