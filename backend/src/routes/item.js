@@ -34,9 +34,9 @@ router.post("/:categoryid", (req, res) => {
   }
 });
 
-router.delete("/:categoryid", (req, res) => {
+router.post("/:categoryid/delete", (req, res) => {
   const {categoryid} = req.params;
-  const {id} = req.query;
+  const {id} = req.body;
   if(categoryid && id) {
     db.getId(id, (result) => {
       if(result[0].report >= 2 && result[0].report >= 0.33*result[0].picked) {

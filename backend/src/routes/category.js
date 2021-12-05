@@ -27,8 +27,8 @@ router.post("/", (req, res) => {
   }
 });
 
-router.delete("/", (req, res) => {
-  const {id} = req.query;
+router.post("/delete", (req, res) => {
+  const {id} = req.body;
   if(id) {
     db.getId(id, (result) => {
       if(result[0].report >= 2 && result[0].report >= 0.33*result[0].picked) {
