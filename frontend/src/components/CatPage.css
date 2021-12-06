@@ -25,3 +25,13 @@
   position:relative;
   left: 295px;
 }
+.hideresult {
+  display:none;
+}
+.showresult {
+  position:absolute;
+  top: 10%;
+  left: 15%;
+  width: calc(70% - 10px);
+  height: 75%;
+}

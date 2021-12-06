@@ -1,15 +1,17 @@
+.catpage {
+margin: 0 20%;
+}
+.catelement {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  border: 5px solid #744f07;
+  background-color: #f7d085;
+}
 .catep {
   margin: 0 20px 0 20px;
-  width: calc(100% - 40px);
+  width: calc(100% - 34px);
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-}
-.cate {
-  border-radius: 5px;
-  border: 0px solid #b8f2ff;
-  background-color: #b8f2ff;
-  cursor: pointer;
-  margin: 20px 10px;
-  width: calc(100% / var(--per-row) - 25px);
 }

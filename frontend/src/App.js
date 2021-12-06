@@ -4,7 +4,6 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Topbar from "./components/Topbar";
 import CatPage from "./components/CatPage";
-import Recommended from "./components/Recommended";
 import Home from "./components/Home";
 
 function App() {

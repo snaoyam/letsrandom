@@ -1,14 +1,28 @@
 .cat-item {
-  height:100px;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .cat-name {
-  color: #5b207a;
+  color: #361810;
+  font-size: 25px;
+  font-weight: 400;
 }
 .catpagebtn {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  width: auto;
+  position: relative;
+  top: 10px;
+  font-size: 12px;
+}
+.catpagebtn span {
+  cursor: pointer;
+}
+.catelement {
+  width: calc(100% / var(--per-row) - 35px);
+  margin: 30px 10px;
+  height: 120px;
 }

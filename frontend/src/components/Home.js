@@ -24,6 +24,7 @@ const Home = ({setCate, catlistshow, reported, setReport}) => {
     }
   };
   const deleteitem = (v) => {
+    console.log(v)
     axios.post(`/api/delete`,{
       id: v._id
     })
@@ -37,9 +38,9 @@ const Home = ({setCate, catlistshow, reported, setReport}) => {
     });
   }
   const catElements = catlistshow.map((v, index) =>
-    <div key={index} className="cate" id={v._id}>
+    <React.Fragment key={index}>
       <CatElement element={v} deleteitem={deleteitem}/>
-    </div>
+    </React.Fragment>
   );
 
   return (
