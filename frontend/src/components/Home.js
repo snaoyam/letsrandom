@@ -37,19 +37,16 @@ const Home = ({setCate, catlistshow, reported, setReport}) => {
     });
   }
   const catElements = catlistshow.map((v, index) =>
-    <div key={index} id={v._id}>
-      <Link to={v._id}>
-        <CatElement name={v.category}/>
-      </Link>
-      <button type="button" className="btn" onClick={() => {
-          deleteitem(v);
-        }}>삭제요청</button>
+    <div key={index} className="cate" id={v._id}>
+      <CatElement element={v} deleteitem={deleteitem}/>
     </div>
   );
 
   return (
     <React.Fragment>
-      {catElements}
+      <div className="catep">
+        {catElements}
+      </div>
       <label>Add new items </label>
       <input type="text" id="newitem" required onChange={onChange} value={inputs}></input><button type="button" className="btn" onClick={additem}>추가하기</button>
     </React.Fragment>

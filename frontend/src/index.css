@@ -1,0 +1,27 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+html, body {
+  font-family: 'Noto Sans Kr', sans-serif; font-weight: 390; 
+  background-color: #b891cc;
+  overflow-x: hidden;
+  user-select: none;
+}
+* { 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+  text-decoration: none;
+  color: #000;
+}
+@media only screen and (max-width:799px){
+  :root {
+    --per-row: 3;
+  }
+}
+@media only screen and (max-width: 1099px) and (min-width:800px){
+  :root {
+    --per-row: 4;
+  }
+}
+@media only screen and (min-width:1100px){
+  :root {
+    --per-row: 5;
+  }
+}

@@ -53,7 +53,11 @@ const CatPage = (props) => {
   return (
     <React.Fragment>
       {props.name}<br></br>
-      <button type="button" className="btn" onClick={getranditem}>Get Random!</button><br></br>
+      <div className="pickrandom" onClick={getranditem}>
+        <img className="pick3" src="pick3.png"/>
+        <img className="pick2" src="pick2.png"/>
+        <img className="pick1" src="pick1.png"/>
+      </div>
       <div>Random value: {item.name}<button type="button" className="btn" onClick={reportitem}>삭제요청</button></div>
       <label>Add new items </label>
       <input type="text" id="newitem" required onChange={onChange} value={inputs}></input><button type="button" className="btn" onClick={additem}>추가하기</button>

@@ -11,7 +11,7 @@ function App() {
   const [catlist, setCate] = useState([]);
   const [reported, setReport] = useState([]);
   const [catlistshow, setCateshow] = useState(catlist);
-  
+
   useEffect(() => {
     const temprep = [];
     reported.forEach(v => { temprep.push(v._id) });
@@ -33,7 +33,6 @@ function App() {
   return (
     <BrowserRouter>
       <Topbar /> 
-      <Recommended />
       <Routes>
         <Route exact path="/" element={<Home setCate={setCate} reported={reported} setReport={setReport} catlistshow={catlistshow}/>}/>
         {catPage}

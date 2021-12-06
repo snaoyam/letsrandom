@@ -1,0 +1,15 @@
+.catep {
+  margin: 0 20px 0 20px;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.cate {
+  border-radius: 5px;
+  border: 0px solid #b8f2ff;
+  background-color: #b8f2ff;
+  cursor: pointer;
+  margin: 20px 10px;
+  width: calc(100% / var(--per-row) - 25px);
+}

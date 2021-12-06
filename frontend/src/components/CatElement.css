@@ -1,0 +1,14 @@
+.cat-item {
+  height:100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cat-name {
+  color: #5b207a;
+}
+.catpagebtn {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,27 @@
+.pickrandom {
+  height: 500px;
+  width: 433px;
+}
+.pickrandom img {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+.pickrandom img:hover {
+  transform: scale(1.05);
+}
+.pickrandom .pick1 {
+  height: 100%;
+  bottom: 203%;
+  position:relative;
+}
+.pickrandom .pick2 {
+  height: 100%;
+  position:relative;
+  bottom: 100%;
+  left: 225px;
+}
+.pickrandom .pick3 {
+  height: 100%;
+  position:relative;
+  left: 295px;
+}
