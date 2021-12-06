@@ -10,7 +10,12 @@ html, body {
   text-decoration: none;
   color: #000;
 }
-@media only screen and (max-width:799px){
+@media only screen and (max-width:699px){
+  :root {
+    --per-row: 2;
+  }
+}
+@media only screen and (max-width: 799px) and (min-width:700px){
   :root {
     --per-row: 3;
   }
