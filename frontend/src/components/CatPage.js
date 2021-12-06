@@ -72,13 +72,14 @@ const CatPage = (props) => {
       </span>
       <br></br>
       <div className="pickrandom" onClick={getranditem}>
-        <img className="pick3" src="pick3.png"/>
-        <img className="pick2" src="pick2.png"/>
-        <img className="pick1" src="pick1.png"/>
+        <img className="pick3" src="pick3n.png"/>
+        <img className="pick2" src="pick2n.png"/>
+        <img className="pick1" src="pick1n.png"/>
       </div>
       <div className={show}>
         <CatPageResult result={item} hideResult={hideResult} reportitem={reportitem}/>
       </div>
+      <br></br>
       <br></br>
       <br></br>
       <label>Add new items </label>

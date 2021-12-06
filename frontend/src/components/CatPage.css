@@ -6,24 +6,35 @@
   cursor: pointer;
   transition: all .2s ease-in-out;
 }
-.pickrandom img:hover {
+.pick1:hover {
+  transform: scale(1.05) rotate(24deg);
+}
+.pick2:hover {
   transform: scale(1.05);
 }
-.pickrandom .pick1 {
-  height: 100%;
-  bottom: 203%;
-  position:relative;
+.pick3:hover {
+  transform: scale(1.05) rotate(-25deg);
 }
-.pickrandom .pick2 {
+.pick1 {
   height: 100%;
   position:relative;
   bottom: 100%;
-  left: 225px;
+  left: 0;
+  transform: rotate(24deg);
 }
-.pickrandom .pick3 {
+.pick2 {
   height: 100%;
   position:relative;
-  left: 295px;
+  bottom: -30px;
+  left: -10px;
+  transform: rotate(0deg);
+}
+.pick3 {
+  height: 100%;
+  position:relative;
+  bottom: 0%;
+  left: 300px;
+  transform: rotate(-25deg);
 }
 .hideresult {
   display:none;
