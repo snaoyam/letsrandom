@@ -66,7 +66,11 @@ const CatPage = (props) => {
 
   return (
     <div className="catpage">
-      {props.name}<br></br>
+      <br></br>
+      <span className="catename">
+        {props.name}
+      </span>
+      <br></br>
       <div className="pickrandom" onClick={getranditem}>
         <img className="pick3" src="pick3.png"/>
         <img className="pick2" src="pick2.png"/>

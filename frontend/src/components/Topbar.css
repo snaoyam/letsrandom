@@ -1,0 +1,20 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px 0 16px;
+  background-color: rgb(254, 239, 255);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.3);
+  font-weight: 400;
+  font-size: 20px;
+  z-index: 2;
+}
+.blank {
+  height: 56px;
+}
